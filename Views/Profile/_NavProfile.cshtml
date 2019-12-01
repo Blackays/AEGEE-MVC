@@ -1,0 +1,8 @@
+﻿@model AEGEE_MVC.Models.User
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item"><a class="nav-link" id="profile" asp-controller="Profile" asp-action="Details" asp-route-id="@User.FindFirst(c => c.Type == "Id").Value">Profile</a></li>
+    <li class="nav-item"><a class="nav-link" id="email" asp-controller="Profile" asp-action="EditEmail" asp-route-id="@User.FindFirst(c => c.Type == "Id").Value">Email</a></li>
+    <li class="nav-item"><a class="nav-link" id="change-password" asp-controller="Profile" asp-action="EditPassword" asp-route-id="@User.FindFirst(c => c.Type == "Id").Value">Password</a></li>
+    <li class="nav-item"><a class="nav-link" id="edit-age" asp-controller="Profile" asp-action="EditAge" asp-route-id="@User.FindFirst(c => c.Type == "Id").Value">Age</a></li>
+    <li class="nav-item"><a class="nav-link" id="edit-age" asp-controller="Profile" asp-action="EditName" asp-route-id="@User.FindFirst(c => c.Type == "Id").Value"> Full Name</a></li>
+</ul>
