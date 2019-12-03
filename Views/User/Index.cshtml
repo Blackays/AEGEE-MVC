@@ -1,0 +1,18 @@
+﻿@model IEnumerable<AEGEE_MVC.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+    <div class="row mt-5 mb-2">
+        @foreach (User user in Model)
+        {
+            <div class="col-lg-4">
+                <img class="img-thumbnail" src="~/img/5.jpg" />
+
+                <h2 style="text-align:center">@user.Name @user.Surname</h2>
+                <p style="text-align:center"><a class="btn btn-warning" asp-controller="Descriptions" asp-action="Index" asp-route-id="@user.UserId">See Person's Descriptions</a></p>
+                <p style="text-align:center"><a class="btn btn-warning" asp-controller="Descriptions" asp-action="Create" asp-route-id="@User.FindFirst(c => c.Type == "Id").Value, @user.UserId ">Write Person's Description</a></p>
+
+            </div>
+        }
+    </div>
