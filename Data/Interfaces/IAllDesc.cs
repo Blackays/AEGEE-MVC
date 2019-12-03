@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AEGEE_MVC.Data.Interfaces
 {
-    interface IAllDesc
+    public interface IAllDesc
     {
         public List<Descriptions> GetAllDescOfUser(int userCharacterId);
 

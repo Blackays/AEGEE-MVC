@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AEGEE_MVC.Models.Descriptions>
+﻿@model AEGEE_MVC.Models.DescOfUserModel
 
 @{
     ViewData["Title"] = "Index";
@@ -13,25 +13,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserCharacterId.Name)
-                @Html.DisplayNameFor(model => model.UserCharacterId.Surname)
+                @Html.DisplayFor(model => model.Name)
+                @Html.DisplayFor(model => model.Surname)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Desc) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.DescId)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DescId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DescId,@item.UserCharacterId.UserId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DescId">Delete</a>
+           <td>
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
         </tr>
 }

@@ -15,6 +15,6 @@ namespace AEGEE_MVC.Data.Repository
             this.appDBContent = appDBContent;
         }
 
-        public List<Descriptions> GetAllDescOfUser(int userCharacterId) => appDBContent.Descriptions.Where(i => i.UserAuthorId == userCharacterId).ToList();
+        public List<Descriptions> GetAllDescOfUser(int userCharacterId) => appDBContent.Descriptions.Where(i => i.UserCharacterId.UserId == userCharacterId).ToList();
     }
 }

@@ -7,25 +7,33 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AEGEE_MVC.Data;
 using AEGEE_MVC.Models;
+using AEGEE_MVC.Data.Interfaces;
 
 namespace AEGEE_MVC.Controllers
 {
     public class DescriptionsController : Controller
     {
         private readonly AppDBContent _context;
-
-        public DescriptionsController(AppDBContent context)
+        private readonly IAllDesc allDesc;
+        public DescriptionsController(AppDBContent context, IAllDesc allDesc)
         {
             _context = context;
+            this.allDesc = allDesc;
         }
 
-        // GET: Descriptions
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int id)
         {
-            return View(await _context.Descriptions.ToListAsync());
+            User user = _context.Users.FirstOrDefault(c => c.UserId == id);
+            DescOfUserModel des = new DescOfUserModel
+            {
+                Name = user.Name,
+                Surname = user.Surname,
+                UserId = user.UserId,
+                Desc = allDesc.GetAllDescOfUser(user.UserId)
+            };
+            return View(des);
         }
 
-        // GET: Descriptions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,29 +51,35 @@ namespace AEGEE_MVC.Controllers
             return View(descriptions);
         }
 
-        // GET: Descriptions/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            return View();
+            User user = _context.Users.FirstOrDefault(c => c.UserId == id);
+            var person = new DescCreateModel
+            {
+                Name = user.Name,
+                Surname = user.Surname,
+                UserId = user.UserId
+            };
+            return View(person);
         }
-
-        // POST: Descriptions/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DescId,Description")] Descriptions descriptions)
+        public async Task<IActionResult> Create(int id, DescCreateModel descriptions)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(descriptions);
+
+                User Cuser = await _context.Users.FirstOrDefaultAsync(c => c.UserId == id);
+                Descriptions desc = new Descriptions();
+                desc.Description = descriptions.Desc.Description;
+                desc.UserCharacterId = Cuser;
+                desc.UserAuthorId = descriptions.UserAuthorId;
+
+                _context.Add(desc);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(descriptions);
+                return RedirectToAction("Index","Home");
+                //return Content(descriptions.UserAuthorId+ "      " + descriptions.Desc.Description + "      "   + id );
         }
 
-        // GET: Descriptions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,9 +95,6 @@ namespace AEGEE_MVC.Controllers
             return View(descriptions);
         }
 
-        // POST: Descriptions/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DescId,Description")] Descriptions descriptions)
@@ -116,7 +127,6 @@ namespace AEGEE_MVC.Controllers
             return View(descriptions);
         }
 
-        // GET: Descriptions/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +144,6 @@ namespace AEGEE_MVC.Controllers
             return View(descriptions);
         }
 
-        // POST: Descriptions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

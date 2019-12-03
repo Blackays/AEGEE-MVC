@@ -149,7 +149,6 @@ C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\Razor\Views\Descri
 C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\Razor\Views\Descriptions\Index.cshtml.g.cs
 C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\Razor\Views\Account\Register.cshtml.g.cs
-C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\AEGEE-MVC.csprojAssemblyReference.cache
 C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\Razor\Views\Profile\EditAge.cshtml.g.cs
 C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\Razor\Views\Profile\_NavProfile.cshtml.g.cs
 C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\Razor\Views\Profile\_Layout.cshtml.g.cs
@@ -157,3 +156,4 @@ C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\Razor\Views\Profil
 C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\Razor\Views\Profile\EditEmail.cshtml.g.cs
 C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\Razor\Views\Profile\EditName.cshtml.g.cs
 C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\Razor\Views\Profile\EditPassword.cshtml.g.cs
+C:\Users\mni01\source\repos\AEGEE-MVC\obj\Debug\netcoreapp3.0\AEGEE-MVC.csprojAssemblyReference.cache
