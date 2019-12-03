@@ -76,7 +76,7 @@ namespace AEGEE_MVC.Controllers
 
                 _context.Add(desc);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index","User");
                 //return Content(descriptions.UserAuthorId+ "      " + descriptions.Desc.Description + "      "   + id );
         }
 

@@ -34,7 +34,7 @@ namespace AEGEE_MVC.Controllers
                 User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
                 if (user != null)
                 {
-                    await Authenticate(user.Name,user.Surname,user.Email,user.Age,user.UserId); // аутентификация
+                    await Authenticate(user.Name, user.Surname, user.Email, user.Age, user.UserId); // аутентификация
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -57,12 +57,12 @@ namespace AEGEE_MVC.Controllers
                 if (user == null)
                 {
                     // добавляем пользователя в бд
-                    db.Users.Add(new User { Email = model.Email, Password = model.Password, Age = model.Age, Login=model.Login, Name= model.Name, Surname=model.Surname });
+                    db.Users.Add(new User { Email = model.Email, Password = model.Password, Age = model.Age, Login = model.Login, Name = model.Name, Surname = model.Surname });
                     await db.SaveChangesAsync();
 
-                    await Authenticate(user.Name, user.Surname, user.Email, user.Age, user.UserId); // аутентификация
+                    //await Authenticate(user.Name, user.Surname, user.Email, user.Age, user.UserId); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -70,7 +70,7 @@ namespace AEGEE_MVC.Controllers
             return View(model);
         }
 
-        private async Task Authenticate(string Name,string Surname,string Email,int Age, int Id)
+        private async Task Authenticate(string Name, string Surname, string Email, int Age, int Id)
         {
             // создаем один claim
             var claims = new List<Claim>
